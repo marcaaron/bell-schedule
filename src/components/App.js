@@ -1,43 +1,8 @@
 import React, { Component } from 'react';
 import '../App.css';
-import schedule from './schedule';
-import Moment from 'moment';
-import { extendMoment } from 'moment-range';
-const moment = extendMoment(Moment);
+import Block from './Block';
 
 const date = new Date();
-
-const inRange = (start, end) => {
-  const year = new Date().getFullYear();
-  const month = new Date().getMonth();
-  const date = new Date().getDate();
-  const now = new Moment();
-  const startTime = new Moment(`${year}-${month+1}-${date} ${start}`, 'YYYY-M-D H:m');
-  const endTime = new Moment(`${year}-${month+1}-${date} ${end}`, 'YYYY-M-D H:m');
-  const range = moment.range(startTime, endTime);
-  if(range.contains(now)){
-    return true;
-  }
-}
-
-const Block = ({day, hour, minutes}) => {
-  const daySchedule = schedule[day];
-  return daySchedule.map((period,index)=>{
-    const rangeArr = period[1].split('-');
-    const start = rangeArr[0];
-    const end = rangeArr[1];
-    let style = {}
-    if(inRange(start,end)){
-      style = {borderRight:`solid red 10px`}
-    }
-    return (
-      <div style={style} key={`${day}_${index}`} className="time-block">
-        <div><strong>{period[0]}</strong></div>
-        <div>{period[1]}</div>
-      </div>
-    );
-  });
-}
 
 class App extends Component {
   state = {
@@ -83,9 +48,7 @@ class App extends Component {
           <p>Today is {day}</p>
           <p>Current Time: {currentTime}</p>
         </div>
-        <div className="time-block-container">
-          <Block currentTime={currentTime} day={day} hour={hour} minutes={minutes} height={height}/>
-        </div>
+        <Block currentTime={currentTime} day={day} hour={hour} minutes={minutes} height={height}/>
       </div>
     );
   }
