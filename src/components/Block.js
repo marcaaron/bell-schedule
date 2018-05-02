@@ -41,6 +41,23 @@ class Block extends Component{
     }
   }
 
+  formatDisplayTime = (timeString) => {
+    let splitTime = timeString.split('-');
+    let starter = splitTime[0];
+    let ender = splitTime[1];
+    if(starter.split(':')[0]>12){
+      starter = starter.split(':');
+      starter[0] = starter[0] - 12;
+      starter = [starter[0], starter[1]].join(':');
+    }
+    if(ender.split(':')[0]>12){
+      ender = ender.split(':');
+      ender[0] = ender[0] - 12;
+      ender = [ender[0], ender[1]].join(':');
+    }
+    return [starter,ender].join(' - ');
+  }
+
   render(){
     const {day} = this.props;
     const daySchedule = schedule[day];
@@ -61,7 +78,7 @@ class Block extends Component{
             return (
               <div style={style} key={`${day}_${index}`} className="time-block">
                 <div><strong>{period[0]}</strong></div>
-                <div>{period[1]}</div>
+                <div>{this.formatDisplayTime(period[1])}</div>
               </div>
             );
           })

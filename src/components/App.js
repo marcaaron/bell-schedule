@@ -50,7 +50,7 @@ class App extends Component {
           <p>Today is {day}</p>
           <p>Current Time: {currentTime}</p>
         </div>
-        <Block currentTime={currentTime} day={day} hour={hour} minutes={minutes} height={height}/>
+        <Block day={day} height={height}/>
       </div>
     );
   }
