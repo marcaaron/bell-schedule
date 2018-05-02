@@ -11,7 +11,7 @@ const inRange = (start, end) => {
   const year = new Date().getFullYear();
   const month = new Date().getMonth();
   const date = new Date().getDate();
-  const now = new Moment('2018-5-1 12:30', 'YYYY-M-D H:m');
+  const now = new Moment();
   const startTime = new Moment(`${year}-${month+1}-${date} ${start}`, 'YYYY-M-D H:m');
   const endTime = new Moment(`${year}-${month+1}-${date} ${end}`, 'YYYY-M-D H:m');
   const range = moment.range(startTime, endTime);
