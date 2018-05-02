@@ -16,6 +16,7 @@ class Block extends Component{
     const {year, month, date} = this.state;
     const day = new Date().toLocaleString('en-us', {  weekday: 'long' });
     const now = new Moment();
+    // const now = new Moment('2018-5-1 9:30');
     const activeRange = schedule[day].map((period,index)=>{
       return [period[1].split('-'), index];
     }).filter(period=>{
@@ -31,6 +32,7 @@ class Block extends Component{
 
   inRange = (start, end, date, month, year, index) => {
     const now = new Moment();
+    // const now = new Moment('2018-5-1 9:30');
     const startTime = new Moment(`${year}-${month+1}-${date} ${start}`, 'YYYY-M-D H:m');
     const endTime = new Moment(`${year}-${month+1}-${date} ${end}`, 'YYYY-M-D H:m');
     const range = moment.range(startTime, endTime);

@@ -40,11 +40,11 @@ class App extends Component {
   render() {
     const {day, hour, minutes, seconds, height} = this.state;
     const currentTime = `${(hour-12)<10 ? "0"+(hour-12) : (hour-12)}:${(minutes)<10 ? "0"+(minutes) : (minutes)}:${(seconds)<10 ? "0"+(seconds) : (seconds)}`;
-    const style = {height:`${height-(height*.1)}px`};
+    const style = {height:`${height-50 < 400 ? 400 : height-50}px`};
     return (
       <div style={style} className="App">
         <div className="header">
-          <h1>Kahuku High School Bell Schedule</h1>
+          <h1>Kahuku High School</h1><h2>Bell Schedule</h2>
           <p>Today is {day}</p>
           <p>Current Time: {currentTime}</p>
         </div>
