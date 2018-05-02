@@ -39,7 +39,9 @@ class App extends Component {
 
   render() {
     const {day, hour, minutes, seconds, height} = this.state;
-    const currentTime = `${(hour-12)<10 ? "0"+(hour-12) : (hour-12)}:${(minutes)<10 ? "0"+(minutes) : (minutes)}:${(seconds)<10 ? "0"+(seconds) : (seconds)}`;
+    let newHour = hour;
+    if(hour>12) newHour = hour-12;
+    const currentTime = `${(newHour)<10 ? "0"+(newHour) : (newHour)}:${(minutes)<10 ? "0"+(minutes) : (minutes)}:${(seconds)<10 ? "0"+(seconds) : (seconds)}`;
     const style = {height:`${height-50 < 400 ? 400 : height-50}px`};
     return (
       <div style={style} className="App">
@@ -48,7 +50,7 @@ class App extends Component {
           <p>Today is {day}</p>
           <p>Current Time: {currentTime}</p>
         </div>
-        <Block currentTime={currentTime} day={day} hour={hour} minutes={minutes} height={height}/>
+        <Block currentTime={currentTime} day={day} hour={newHour} minutes={minutes} height={height}/>
       </div>
     );
   }
